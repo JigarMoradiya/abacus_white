@@ -28,7 +28,6 @@ fun CCMHomeRoute(
 ) {
     val viewModel: CCMHomeViewModel = hiltViewModel()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val purchasedSKU by homeActivityViewModel.purchasedSku.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val pleaseSelectMsg = stringResource(R.string.please_select_at_least_one_checkbox)
 
@@ -38,7 +37,7 @@ fun CCMHomeRoute(
             onBackClick = onBackClick
         )
         CCMHomeScreen(uiState, viewModel) {
-            if (homeActivityViewModel.isPurchasedForModule(purchasedSKU)) {
+            if (homeActivityViewModel.isPurchasedForModule()) {
                 if (!uiState.isQuestionSpeak && !uiState.isQuestionShowWord && !uiState.isQuestionShowNumber) {
                     context.toastS(pleaseSelectMsg)
                 } else {

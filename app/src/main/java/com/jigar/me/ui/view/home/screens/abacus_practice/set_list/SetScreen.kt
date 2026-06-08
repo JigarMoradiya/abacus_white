@@ -20,7 +20,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jigar.me.BuildConfig
@@ -44,7 +43,6 @@ fun SetScreen(
     val viewModel: SetViewModel = hiltViewModel()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val allSets by homeActivityViewModel.allSets.collectAsStateWithLifecycle()
-    val purchasedSKU by homeActivityViewModel.purchasedSku.collectAsStateWithLifecycle()
 
     Column(modifier = Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)) {
         Row(
@@ -52,7 +50,7 @@ fun SetScreen(
             verticalAlignment = Alignment.CenterVertically
         ) {
             BackButtonWithText(
-                title = uiState.name,
+                title = uiState.pageTitle,
                 onBackClick = onBackClick,
                 modifier = Modifier.weight(1f)
             )
@@ -84,7 +82,7 @@ fun SetScreen(
                         page = page,
                         allSets = allSets,
                         onSetClick = { set ->
-                            val isPurchase = homeActivityViewModel.isPurchasedSelectedLevel(purchasedSKU, uiState.name)
+                            val isPurchase = homeActivityViewModel.isPurchasedSelectedLevel(uiState.levelName)
                             AudioPlayerManager.playSoundBtnBack()
                             if (isPurchase) {
                                 onNavigateToDoPractice(set.id)

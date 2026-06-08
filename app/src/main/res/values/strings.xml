@@ -1,11 +1,9 @@
 <resources>
-    <!--    <string name="app_name">Abacus child learning application</string>-->
-    <string name="web_client_id">884602254815-fscadb7gdq4g4gfvk9cts4sh02j194hb.apps.googleusercontent.com</string>
     <string name="download_folder">Abacus Downloads</string>
-    <string name="share_text_msg">Abacus child learning application!\nAbacus will help your children learn about Abacus, Numbers, Addition, Subtraction, Multiplication, Division.\n\nDownload Abacus App from Google Play Store \uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDE0D\uD83D\uDE07\n</string>
+    <string name="share_text_msg">eAbacus learning application!\nAbacus will help your children learn about Abacus, Numbers, Addition, Subtraction, Multiplication, Division.\n\nDownload Abacus App from Google Play Store \uD83D\uDC47\uD83D\uDC47\uD83D\uDC47\uD83D\uDE0D\uD83D\uDE07\n</string>
     <string name="material_customization">If you want any customization on material like change to Logo, add watermark, etc.. you can contact us on %1$s</string>
     <string name="privacy_policy_text">Here we declare the Privacy Policy for Abacus - Child Learning Application android mobile application.\n\nAbacus - Child Learning Application is a mathematical tools used for calculation. This app will help your children learn about Abacus, Numbers, Addition, Subtraction, Multiplication, Division.\n\nAbacus is suitable for children age 5 and up, who know about numbers and some basic addition and subtraction.\n\n<b>All application data collocting by Brainapptech Team and we are responsible for that if any issue regarding to data. Content not have any violent, sexual or nudity and drugs so all the people can use it and special kids below 9 year.</b>\n\n<b><font color='#FF0000'>Benefits of Abacus - Child Learning Application : </font></b>\n- Boosting the calculation skills making them better and faster.<br />- Sharpens concentration and comprehension.\n- Increases endurance for stress and pressure.<br />- It helps in better reading and writing.\n- Sharpens listening skills.\n- One of major benefits of Abacus program is that it makes mathematics meaningful, useful and fun for the children.\n- Specially this Abacus program is very effective for those who do not like studying math.\n\n<b><font color='#0000EE'>Give exam</font></b> as per your children level and determine result.\n<b><font color='#0000EE'>Download practice material</font></b> available, its not only math your kids can learn all about around us.\n- Kids can <b><font color='#0000EE'>learn about Pets animals, Farm animals, Mammal animals, Sea animals, Wild animals, Birds, Fruits, Vegetables, Shapes,</font></b> etc..\n- <b><font color='#0000EE'>Count the objects, Fill the blank, Less than &amp; Greater than &amp; Equals, Odds &amp; Evens number.</font></b>\n- Know about Abacus, Identify beads of abacus, Draw beads of abacus.\n- Learn about Number, Addition &amp; Subtraction, Multiplication &amp; Division.\n\nApplication contain ads but its not harmfull to child. We contolled ads to showing in application. We blocked all the Sensitive Categories ads which can harmfull to kids.\n\nWe are responsible for all content which are showing in application and we declare in Privacy Policy.\n\nIn application following permission is used.\n1) INTERNET - For data load and ads loading.\n\nBest Regarding,\nBrainapptech Team.</string>
-    <string name="default_notification_channel_id">abacus_public_notification</string>
+    <string name="default_notification_channel_id">eabacus_public_notification</string>
 
     <!--  TTS  -->
     <string name="speech_formula_for">formula for %1$s</string>
@@ -50,6 +48,8 @@
     <string name="no_internet">Please check your Wi-Fi or mobile data connection.</string>
     <string name="still_no_internet">Still your internet is not working.</string>
     <string name="no_internet_working">No Internet Connection</string>
+    <string name="no_access">No Access</string>
+    <string name="contact_administrator">Please contact your administrator</string>
     <string name="some_thing_wrong">Some thing went wrong, Please try again after sometime.</string>
 
     <!--  Tour page  -->
@@ -148,6 +148,7 @@
     <string name="yes_i_want_to_update">Yes, I want to Update</string>
     <string name="no_purchase_later">No, I will Subscribe later</string>
     <string name="no_thanks">No, thanks</string>
+    <string name="okay_thanks">Okay, thanks</string>
     <string name="no_please_continue">No, please continue</string>
     <string name="no_thanks_continue_later">No, thanks continue later</string>
     <!--  Settings  -->
@@ -334,7 +335,7 @@
     <string name="free_abacus_theme">Abacus Themes</string>
     <string name="paid_abacus_themes">Advance Abacus Themes</string>
     <string name="preview_of_theme">Preview of Theme</string>
-    <string name="welcome_to_abacus_application">Welcome to the Vedaavi Learning</string>
+    <string name="welcome_to_abacus_application">Welcome to the Abacus Learning</string>
     <string name="please_choose_your_anonymous_name_and_avatar">Please choose child\'s anonymous\nname and avatar</string>
     <string name="choose_child_avatar">Choose child\'s avatar</string>
     <string name="please_select_avatar">Please select avatar</string>
@@ -571,7 +572,7 @@
     <string name="voice_speed">Voice Speed</string>
     <string name="update_setting">Update Setting</string>
     <string name="check_voice">Check Voice</string>
-    <string name="speak_test">Welcome to Abacus Child Learning Application. Abacus is help your children to learn about number, addition, subtraction, multiplication and division.</string>
+    <string name="speak_test">Welcome to eAbacus Learning Application. Abacus is help your children to learn about number, addition, subtraction, multiplication and division.</string>
     <string name="check_answer">Check Answer</string>
     <string name="check_answer_">Check\nAnswer</string>
     <string name="set_your_answer">Set Your Answer</string>
@@ -586,8 +587,8 @@
     <string name="in_your_device_voices_not_found">In your device voices not found.</string>
 
 
-    <string name="welcome_to_abacus_child_leaning_app">Welcome to the <font color='#09064A'>Abacus Child Learning Application</font></string>
-    <string name="welcome_to_abacus_child_leaning_app_portraint">Welcome to the,\n<font color='#09064A'>Abacus Child Learning Application</font></string>
+    <string name="welcome_to_abacus_child_leaning_app">Welcome to the <font color='#09064A'>eAbacus Learning Application</font></string>
+    <string name="welcome_to_abacus_child_leaning_app_portraint">Welcome to the,\n<font color='#09064A'>eAbacus Learning Application</font></string>
     <string name="login_to_your_account">Login to your account</string>
     <string name="email_id">Email ID</string>
     <string name="password">Password</string>

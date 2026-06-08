@@ -8,7 +8,7 @@ Java_com_jigar_me_utils_CommonUtils_getOneSignalKey(JNIEnv *env,jobject) {
 }
 extern "C" jstring
 Java_com_jigar_me_utils_CommonUtils_getOrganizerId(JNIEnv *env,jobject) {
-    std::string app_secret = "77609163-2e8a-4bfa-91ad-a1fa3cdc6a5b";
+    std::string app_secret = "c32d0d4a-a2ae-4ca5-8f5a-94c3659e9832";
     return env->NewStringUTF(app_secret.c_str());
 }
 extern "C" jstring

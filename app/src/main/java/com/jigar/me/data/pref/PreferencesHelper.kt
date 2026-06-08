@@ -4,8 +4,6 @@ interface PreferencesHelper {
     // constants
     fun isUserLoggedIn(): Boolean
     fun setUserLoggedIn(value: Boolean)
-    fun isUserInFreeTrial(): Boolean
-    fun setUserInFreeTrial(value: Boolean)
     fun getAccessToken(): String?
     fun setAccessToken(accessToken: String?)
     fun getLoginData(): String?

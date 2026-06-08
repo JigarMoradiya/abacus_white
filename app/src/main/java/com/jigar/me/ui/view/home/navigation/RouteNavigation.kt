@@ -47,8 +47,6 @@ sealed class RouteNavigation(val route: String) {
 
     object Settings : RouteNavigation("Settings")
 
-    object Purchase : RouteNavigation("Purchase")
-
     object YoutubeVideo : RouteNavigation("YoutubeVideo")
 
     object WhatsLearning : RouteNavigation("WhatsLearning")

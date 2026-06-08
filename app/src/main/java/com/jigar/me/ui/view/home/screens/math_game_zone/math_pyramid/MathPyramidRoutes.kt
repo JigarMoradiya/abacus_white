@@ -18,12 +18,11 @@ fun MathPyramidHomeRoute(
     onBackClick: () -> Unit,
 ) {
     val viewModel: MathPyramidViewModel = hiltViewModel()
-    val purchasedSKU by homeActivityViewModel.purchasedSku.collectAsStateWithLifecycle()
 
     MathPyramidHomeJetpackScreen(
         viewModel = viewModel,
         onStartGame = {
-            if (homeActivityViewModel.isPurchasedForModule(purchasedSKU)) {
+            if (homeActivityViewModel.isPurchasedForModule()) {
                 val state = viewModel.uiState.value
                 onStartPlay(state.selectedLevel, state.selectedDifficulty.name)
             } else {

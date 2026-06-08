@@ -4,10 +4,6 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.jigar.me.data.local.data.ExamPaper
-import com.jigar.me.data.model.dbtable.exam.DailyExamData
-import com.jigar.me.data.model.dbtable.exam.ExamHistory
-import com.jigar.me.data.model.dbtable.inapp.InAppPurchaseDetails
-import com.jigar.me.data.model.dbtable.inapp.InAppSkuDetails
 import java.util.*
 
 class DataTypeConverter {
@@ -23,16 +19,6 @@ class DataTypeConverter {
         return date?.time?.toLong()
     }
 
-    @TypeConverter
-    fun examDetailToList(data: String): List<DailyExamData> {
-        val listType = object : TypeToken<List<DailyExamData>>() {}.type
-        return gson.fromJson(data, listType)
-    }
-
-    @TypeConverter
-    fun listToExamDetail(someObjects: List<DailyExamData>): String {
-        return gson.toJson(someObjects)
-    }
     @TypeConverter
     fun beginnerExamDetailToList(data: String): List<ExamPaper> {
         val listType = object : TypeToken<List<ExamPaper>>() {}.type
@@ -57,34 +43,4 @@ class DataTypeConverter {
     fun listToString(someObjects: List<String>?): String {
         return gson.toJson(someObjects)
     }
-
-    @TypeConverter
-    fun inAppSkuDetailsToObject(data: String): InAppSkuDetails? {
-        return gson.fromJson(data, InAppSkuDetails::class.java)
-    }
-
-    @TypeConverter
-    fun objectToInAppSkuDetails(someObjects: InAppSkuDetails?): String {
-        return gson.toJson(someObjects)
-    }
-
-    @TypeConverter
-    fun inAppPurchaseDetailsToObject(data: String): InAppPurchaseDetails? {
-        return gson.fromJson(data, InAppPurchaseDetails::class.java)
-    }
-
-    @TypeConverter
-    fun objectToInAppPurchaseDetails(someObjects: InAppPurchaseDetails?): String {
-        return gson.toJson(someObjects)
-    }
-    @TypeConverter
-    fun examHistoryToObject(data: String): ExamHistory? {
-        return gson.fromJson(data, ExamHistory::class.java)
-    }
-
-    @TypeConverter
-    fun objectToExamHistory(someObjects: ExamHistory?): String {
-        return gson.toJson(someObjects)
-    }
-
 }

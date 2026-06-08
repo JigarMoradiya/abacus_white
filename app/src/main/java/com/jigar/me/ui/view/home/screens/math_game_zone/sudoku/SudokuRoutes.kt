@@ -19,13 +19,12 @@ fun SudokuHomeRoute(
     onPurchase: () -> Unit,
 ) {
     val viewModel: SudokuHomeViewModel = hiltViewModel()
-    val purchasedSKU by homeActivityViewModel.purchasedSku.collectAsStateWithLifecycle()
 
     SudokuHomeScreen(
         viewModel = viewModel,
         navController = navController,
         onStart = {
-            if (homeActivityViewModel.isPurchasedForModule(purchasedSKU)) {
+            if (homeActivityViewModel.isPurchasedForModule()) {
                 val state = viewModel.uiState.value
                 onStartPlay(
                     state.selectedSizeFinal.name,

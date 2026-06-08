@@ -1,7 +1,15 @@
 package com.jigar.me.ui.view.home.navigation
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -9,6 +17,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.jigar.me.R
+import com.jigar.me.ui.view.home.common_ui.dialogs.CustomPopupView
 import com.jigar.me.ui.view.home.screens.activities.ccm.home.CCMHomeRoute
 import com.jigar.me.ui.view.home.screens.activities.ccm.play.CCMPlayRoute
 import com.jigar.me.ui.view.home.screens.activities.exam.home.ExamHomeRoute
@@ -30,7 +40,6 @@ import com.jigar.me.ui.view.home.screens.math_game_zone.sudoku.SudokuHomeRoute
 import com.jigar.me.ui.view.home.screens.math_game_zone.sudoku.SudokuPlayRoute
 import com.jigar.me.ui.view.home.screens.math_game_zone.target_number.TargetNumberHomeRoute
 import com.jigar.me.ui.view.home.screens.math_game_zone.target_number.TargetNumberPlayRoute
-import com.jigar.me.ui.view.home.screens.purchase.PurchaseScreenRoute
 import com.jigar.me.ui.view.home.screens.settings.SettingsScreenRoute
 import com.jigar.me.ui.view.home.screens.whats_learning.WhatsLearningScreenRoute
 import com.jigar.me.ui.view.home.screens.youtube.YoutubeVideoScreenRoute
@@ -52,10 +61,10 @@ fun HomeNavGraph(
             onInitialRouteHandled()
         }
     }
+    var showDialog by remember { mutableStateOf(false) }
 
     NavHost(
-        navController = navController,
-        startDestination = RouteNavigation.Home.route
+        navController = navController, startDestination = RouteNavigation.Home.route
     ) {
         composable(route = RouteNavigation.Home.route) {
             HomeScreen(
@@ -83,9 +92,6 @@ fun HomeNavGraph(
                 onNavigateToCCMHome = {
                     navController.navigate(RouteNavigation.CCMHome.route)
                 },
-                onNavigateToPurchase = {
-                    navController.navigate(RouteNavigation.Purchase.route)
-                },
                 onNavigateToYoutubeVideo = {
                     navController.navigate(RouteNavigation.YoutubeVideo.route)
                 },
@@ -98,33 +104,18 @@ fun HomeNavGraph(
         composable(route = RouteNavigation.AbacusFreeMode.route) {
             val viewModel: AbacusFreeModeViewModel = hiltViewModel()
             AbacusFreeModeScreen(
-                viewModel = viewModel,
-                onBackClick = { navController.popBackStack() }
-            )
+                viewModel = viewModel, onBackClick = { navController.popBackStack() })
         }
 
         composable(
-            route = RouteNavigation.LevelCategory.route,
-            arguments = listOf(
-                navArgument("levelId") { type = NavType.StringType }
-            )
-        ) {
-            LevelCategoryScreen(
-                homeActivityViewModel = homeActivityViewModel,
-                onBackClick = { navController.popBackStack() },
-                onNavigateToSet = { levelCategory ->
-                    navController.navigate(RouteNavigation.Set.abacusSet(levelCategory.id,levelCategory.name))
-                }
-            )
+            route = RouteNavigation.LevelCategory.route, arguments = listOf(
+            navArgument("levelId") { type = NavType.StringType })) {
+            LevelCategoryScreen(homeActivityViewModel = homeActivityViewModel, onBackClick = { navController.popBackStack() }, onNavigateToSet = { levelCategory ->
+                navController.navigate(RouteNavigation.Set.abacusSet(levelCategory.id, levelCategory.name))
+            })
         }
 
-        composable(
-            route = RouteNavigation.Set.route,
-            arguments = listOf(
-                navArgument("levelCategoryId") { type = NavType.StringType },
-                navArgument("name") { type = NavType.StringType }
-            )
-        ) {
+        composable(route = RouteNavigation.Set.route, arguments = listOf(navArgument("levelCategoryId") { type = NavType.StringType }, navArgument("name") { type = NavType.StringType })) {
             SetScreen(
                 homeActivityViewModel = homeActivityViewModel,
                 onBackClick = { navController.popBackStack() },
@@ -135,31 +126,23 @@ fun HomeNavGraph(
                     navController.navigate(RouteNavigation.AbacusList.list(setId))
                 },
                 onNavigateToPurchase = {
-                    navController.navigate(RouteNavigation.Purchase.route)
+                    showDialog = true
                 },
             )
         }
 
         composable(
-            route = RouteNavigation.AbacusDoPractice.route,
-            arguments = listOf(
-                navArgument("setId") { type = NavType.StringType }
-            )
-        ) {
+            route = RouteNavigation.AbacusDoPractice.route, arguments = listOf(
+            navArgument("setId") { type = NavType.StringType })) {
             AbacusDoPracticeRoute(
-                onBackClick = { navController.popBackStack() }
-            )
+                onBackClick = { navController.popBackStack() })
         }
 
         composable(
-            route = RouteNavigation.AbacusList.route,
-            arguments = listOf(
-                navArgument("setId") { type = NavType.StringType }
-            )
-        ) {
+            route = RouteNavigation.AbacusList.route, arguments = listOf(
+            navArgument("setId") { type = NavType.StringType })) {
             AbacusListRoute(
-                onBackClick = { navController.popBackStack() }
-            )
+                onBackClick = { navController.popBackStack() })
         }
 
         composable(route = RouteNavigation.MathGameZone.route) {
@@ -181,135 +164,86 @@ fun HomeNavGraph(
         }
 
         composable(route = RouteNavigation.NumberSequencePuzzleHome.route) {
-            NumberSequencePuzzleHomeRoute(
-                navController = navController,
-                homeActivityViewModel = homeActivityViewModel,
-                onPuzzleSelect = { type ->
-                    navController.navigate(RouteNavigation.NumberSequencePuzzlePlay.play(type))
-                },
-                onPurchase = { navController.navigate(RouteNavigation.Purchase.route) },
-                onBackClick = { navController.popBackStack() }
-            )
+            NumberSequencePuzzleHomeRoute(navController = navController, homeActivityViewModel = homeActivityViewModel, onPuzzleSelect = { type ->
+                navController.navigate(RouteNavigation.NumberSequencePuzzlePlay.play(type))
+            }, onPurchase = {
+                showDialog = true
+            }, onBackClick = { navController.popBackStack() })
         }
 
         composable(
-            route = RouteNavigation.NumberSequencePuzzlePlay.route,
-            arguments = listOf(
-                navArgument("type") { type = NavType.IntType }
-            )
-        ) { backStackEntry ->
+            route = RouteNavigation.NumberSequencePuzzlePlay.route, arguments = listOf(
+            navArgument("type") { type = NavType.IntType })) { backStackEntry ->
             val type = backStackEntry.arguments?.getInt("type") ?: 3
             NumberSequencePuzzlePlayRoute(
-                navController = navController,
-                gridSize = type
+                navController = navController, gridSize = type
             )
         }
 
         composable(route = RouteNavigation.SudokuHome.route) {
-            SudokuHomeRoute(
-                navController = navController,
-                homeActivityViewModel = homeActivityViewModel,
-                onStartPlay = { size, difficulty, isNewPuzzle ->
-                    navController.navigate(
-                        RouteNavigation.SudokuPlay.play(size, difficulty, isNewPuzzle)
-                    )
-                },
-                onPurchase = { navController.navigate(RouteNavigation.Purchase.route) }
-            )
+            SudokuHomeRoute(navController = navController, homeActivityViewModel = homeActivityViewModel, onStartPlay = { size, difficulty, isNewPuzzle ->
+                navController.navigate(
+                    RouteNavigation.SudokuPlay.play(size, difficulty, isNewPuzzle)
+                )
+            }, onPurchase = {
+                showDialog = true
+            })
         }
 
-        composable(
-            route = RouteNavigation.SudokuPlay.route,
-            arguments = listOf(
-                navArgument("size") { type = NavType.StringType },
-                navArgument("difficulty") { type = NavType.StringType },
-                navArgument("isNewPuzzle") { type = NavType.BoolType }
-            )
-        ) {
+        composable(route = RouteNavigation.SudokuPlay.route, arguments = listOf(navArgument("size") { type = NavType.StringType }, navArgument("difficulty") { type = NavType.StringType }, navArgument("isNewPuzzle") { type = NavType.BoolType })) {
             SudokuPlayRoute(navController = navController)
         }
 
         composable(route = RouteNavigation.MathPyramidHome.route) {
-            MathPyramidHomeRoute(
-                homeActivityViewModel = homeActivityViewModel,
-                onStartPlay = { levels, difficulty ->
-                    navController.navigate(RouteNavigation.MathPyramidPlay.play(levels, difficulty))
-                },
-                onPurchase = { navController.navigate(RouteNavigation.Purchase.route) },
-                onBackClick = { navController.popBackStack() }
-            )
+            MathPyramidHomeRoute(homeActivityViewModel = homeActivityViewModel, onStartPlay = { levels, difficulty ->
+                navController.navigate(RouteNavigation.MathPyramidPlay.play(levels, difficulty))
+            }, onPurchase = {
+                showDialog = true
+            }, onBackClick = { navController.popBackStack() })
         }
 
-        composable(
-            route = RouteNavigation.MathPyramidPlay.route,
-            arguments = listOf(
-                navArgument("levels") { type = NavType.IntType },
-                navArgument("difficulty") { type = NavType.StringType }
-            )
-        ) { backStackEntry ->
+        composable(route = RouteNavigation.MathPyramidPlay.route, arguments = listOf(navArgument("levels") { type = NavType.IntType }, navArgument("difficulty") { type = NavType.StringType })) { backStackEntry ->
             val levels = backStackEntry.arguments?.getInt("levels") ?: 4
             val difficultyName = backStackEntry.arguments?.getString("difficulty")
             MathPyramidPlayRoute(
-                levels = levels,
-                difficultyName = difficultyName,
-                onBackClick = { navController.popBackStack() }
-            )
+                levels = levels, difficultyName = difficultyName, onBackClick = { navController.popBackStack() })
         }
 
         composable(route = RouteNavigation.TargetNumberHome.route) {
-            TargetNumberHomeRoute(
-                homeActivityViewModel = homeActivityViewModel,
-                onStartPlay = { level, diff ->
-                    navController.navigate(RouteNavigation.TargetNumberPlay.play(level, diff))
-                },
-                onPurchase = { navController.navigate(RouteNavigation.Purchase.route) },
-                onBackClick = { navController.popBackStack() }
-            )
+            TargetNumberHomeRoute(homeActivityViewModel = homeActivityViewModel, onStartPlay = { level, diff ->
+                navController.navigate(RouteNavigation.TargetNumberPlay.play(level, diff))
+            }, onPurchase = {
+                showDialog = true
+            }, onBackClick = { navController.popBackStack() })
         }
 
-        composable(
-            route = RouteNavigation.TargetNumberPlay.route,
-            arguments = listOf(
-                navArgument("target_level") { type = NavType.IntType },
-                navArgument("target_diff") { type = NavType.StringType }
-            )
-        ) {
+        composable(route = RouteNavigation.TargetNumberPlay.route, arguments = listOf(navArgument("target_level") { type = NavType.IntType }, navArgument("target_diff") { type = NavType.StringType })) {
             TargetNumberPlayRoute(
-                onBackClick = { navController.popBackStack() }
-            )
+                onBackClick = { navController.popBackStack() })
         }
 
         composable(route = RouteNavigation.Settings.route) {
             SettingsScreenRoute(
-                homeActivityViewModel = homeActivityViewModel,
-                onBackClick = { navController.popBackStack() }
-            )
-        }
-
-        composable(route = RouteNavigation.Purchase.route) {
-            PurchaseScreenRoute(
-                homeActivityViewModel = homeActivityViewModel,
-                onClose = { navController.popBackStack() }
-            )
+                homeActivityViewModel = homeActivityViewModel, onBackClick = { navController.popBackStack() })
         }
 
         composable(route = RouteNavigation.YoutubeVideo.route) {
             YoutubeVideoScreenRoute(
-                onBackClick = { navController.popBackStack() }
-            )
+                onBackClick = { navController.popBackStack() })
         }
 
         composable(route = RouteNavigation.WhatsLearning.route) {
             WhatsLearningScreenRoute(
-                onClose = { navController.popBackStack() }
-            )
+                onClose = { navController.popBackStack() })
         }
 
         composable(route = RouteNavigation.MyAccount.route) {
             MyAccountRoute(
                 onBackClick = { navController.popBackStack() },
                 onNavigateToFAQs = { navController.navigate(RouteNavigation.FAQs.route) },
-                onNavigateToPurchase = { navController.navigate(RouteNavigation.Purchase.route) },
+                onNavigateToPurchase = {
+                    showDialog = true
+                },
                 onNavigateToSettings = { navController.navigate(RouteNavigation.Settings.route) },
                 onNavigateToReportHistory = { navController.navigate(RouteNavigation.ReportHistory.route) },
                 onNavigateToWhatsLearning = { navController.navigate(RouteNavigation.WhatsLearning.route) },
@@ -318,52 +252,53 @@ fun HomeNavGraph(
 
         composable(route = RouteNavigation.ReportHistory.route) {
             ReportHistoryRoute(
-                onBackClick = { navController.popBackStack() }
-            )
+                onBackClick = { navController.popBackStack() })
         }
 
         composable(route = RouteNavigation.FAQs.route) {
             FAQsRoute(
-                onBackClick = { navController.popBackStack() }
-            )
+                onBackClick = { navController.popBackStack() })
         }
 
         composable(route = RouteNavigation.Exercise.route) {
-            ExerciseRoute(
-                homeActivityViewModel = homeActivityViewModel,
-                onBackClick = { navController.popBackStack() },
-                onNavigateToPurchase = { navController.navigate(RouteNavigation.Purchase.route) }
-            )
+            ExerciseRoute(homeActivityViewModel = homeActivityViewModel, onBackClick = { navController.popBackStack() }, onNavigateToPurchase = {
+                showDialog = true
+            })
         }
 
         composable(route = RouteNavigation.ExamHome.route) {
-            ExamHomeRoute(
-                homeActivityViewModel = homeActivityViewModel,
-                onBackClick = { navController.popBackStack() },
-                onStartPlay = { navController.navigate(RouteNavigation.ExamPlay.route) },
-                onPurchase = { navController.navigate(RouteNavigation.Purchase.route) }
-            )
+            ExamHomeRoute(homeActivityViewModel = homeActivityViewModel, onBackClick = { navController.popBackStack() }, onStartPlay = { navController.navigate(RouteNavigation.ExamPlay.route) }, onPurchase = {
+                showDialog = true
+            })
         }
 
         composable(route = RouteNavigation.ExamPlay.route) {
             ExamPlayRoute(
-                onBackClick = { navController.popBackStack() }
-            )
+                onBackClick = { navController.popBackStack() })
         }
 
         composable(route = RouteNavigation.CCMHome.route) {
-            CCMHomeRoute(
-                homeActivityViewModel = homeActivityViewModel,
-                onBackClick = { navController.popBackStack() },
-                onStartPlay = { navController.navigate(RouteNavigation.CCMPlay.route) },
-                onPurchase = { navController.navigate(RouteNavigation.Purchase.route) }
-            )
+            CCMHomeRoute(homeActivityViewModel = homeActivityViewModel, onBackClick = { navController.popBackStack() }, onStartPlay = { navController.navigate(RouteNavigation.CCMPlay.route) }, onPurchase = {
+                showDialog = true
+            })
         }
 
         composable(route = RouteNavigation.CCMPlay.route) {
             CCMPlayRoute(
-                onBackClick = { navController.popBackStack() }
-            )
+                onBackClick = { navController.popBackStack() })
         }
+    }
+
+    AnimatedVisibility(
+        visible = showDialog, enter = fadeIn(), exit = fadeOut()
+    ) {
+        CustomPopupView(
+            title = stringResource(R.string.no_access),
+            description = stringResource(R.string.contact_administrator),
+            positiveButtonText = stringResource(R.string.okay_thanks),
+            icon = R.drawable.ic_alert,
+            widthMultiplier = 0.7f,
+            onPositiveTapped = { showDialog = false }
+        )
     }
 }

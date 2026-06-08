@@ -16,17 +16,8 @@ class StudentApiRepository @Inject constructor(
     private val api: StudentApi
 ) : SafeApiCall {
 
-    suspend fun signup(request : SignupV2Request) = safeApiCall {
-        api.signup(request)
-    }
-    suspend fun verification(request : VerifyEmailRequest) = safeApiCall {
-        api.verification(request)
-    }
     suspend fun login(request : LoginRequest) = safeApiCall {
         api.login(request)
-    }
-    suspend fun socialLogin(request : SocialLoginRequest) = safeApiCall {
-        api.socialLogin(request)
     }
     suspend fun getAbacusData(request : FetchAbacusDataRequest) = safeApiCall {
         api.getAbacusData(request)

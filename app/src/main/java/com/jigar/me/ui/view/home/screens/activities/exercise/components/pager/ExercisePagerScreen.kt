@@ -187,7 +187,7 @@ fun ExercisePagerScreen(
             }
         }
 
-        Spacer(Modifier.height(AppDimens.Dimens16))
+        Spacer(Modifier.height(Dimens16))
     }
 }
 

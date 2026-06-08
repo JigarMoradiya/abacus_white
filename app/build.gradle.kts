@@ -69,12 +69,12 @@ android {
             buildConfigField("String", "NEW_MODULE", properties["new_module"].toString())
             buildConfigField("String", "LOCATION_MODULE", properties["location_module"].toString())
             buildConfigField("String", "EXAM_MODULE", properties["exam_module"].toString())
-            resValue("string", "app_name", "Abacus")
+            resValue("string", "app_name", "eAbacus")
 
             dimension = "variant1"
-            applicationId = "com.abacus.puzzle"
-            versionCode = 162
-            versionName = "15.0.8"
+            applicationId = "com.eabacus.brain.builder"
+            versionCode = 1
+            versionName = "1.0.0"
         }
     }
 
@@ -170,9 +170,6 @@ dependencies {
     implementation(libs.sqlcipher.android)
     implementation(libs.androidx.sqlite)
     implementation(libs.androidx.sqlite.framework)
-
-    // Billing
-    implementation(libs.billing.ktx)
 
     // Data
     implementation(libs.gson)

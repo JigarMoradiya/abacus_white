@@ -3,26 +3,13 @@ package com.jigar.me.utils
 //Application Constants Values
 object Constants {
 
-    const val CLICK_TYPE_LONG = "long"
-    const val CLICK_TYPE_DETAIL = "detail"
+    const val PRODUCT_ID_All = "all"
+    const val PRODUCT_ID_1Year = "1year"
     const val NOTIFICATION_PERMISSION = "notification_permission"
-    const val avatarId = "avatarId"
-    const val childName = "childName"
     const val PLAN_ASSIGN_FROM_ADMIN_DATA = "plan_assign_from_admin"
-    const val PLAN_ASSIGN_FROM_ADMIN_FOR_REVIEW = "FOR_REVIEW"
-    const val PLAN_ASSIGN_FROM_ADMIN_ON_REQUEST = "ON_REQUEST"
     const val APP_REVIEW_DATA = "app_reviews"
     const val APP_REVIEW_STATUS_REJECT = "REJECT"
     const val APP_REVIEW_STATUS_APPROVE = "APPROVE"
-
-    const val appLanguage = "appLanguage"
-    const val appLanguage_arebic = "ar"
-
-    var banner_rate_us = "banner_rate_us"
-    var banner_share = "banner_share"
-    var banner_bulk_login = "banner_bulk_login"
-//    var banner_purchase = "banner_purchase"
-//    var banner_offer = "banner_offer"
 
     const val notificationTypeStarter = "starter"
     const val notificationTypeExam = "exam"

@@ -12,12 +12,6 @@ import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface StudentApi {
-    @POST("student/signup")
-    suspend fun signup(@Body request : SignupV2Request): MainAPIResponse
-    @POST("student/verification")
-    suspend fun verification(@Body request : VerifyEmailRequest): MainAPIResponse
-    @POST("student/google-login-signup")
-    suspend fun socialLogin(@Body request : SocialLoginRequest): MainAPIResponse
     @POST("student/login")
     suspend fun login(@Body request : LoginRequest): MainAPIResponse
     @POST("student/handle-existing-plan")

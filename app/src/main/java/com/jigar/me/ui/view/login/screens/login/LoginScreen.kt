@@ -111,12 +111,12 @@ fun LoginScreen(
             )
             Spacer(modifier = Modifier.weight(1f))
 
-            KidsIconButton(
-                icon = Icons.Default.QuestionAnswer,
-                onClick = onNavigateToFAQs,
-                type = ButtonType.PINK,
-                size = KidIconMedium
-            )
+//            KidsIconButton(
+//                icon = Icons.Default.QuestionAnswer,
+//                onClick = onNavigateToFAQs,
+//                type = ButtonType.PINK,
+//                size = KidIconMedium
+//            )
         }
 
         Column(
@@ -218,15 +218,6 @@ fun LoginScreen(
                     keyboardController?.hide()
                     viewModel.onSubmit()
                 },
-            )
-
-            Text(
-                text = stringResource(R.string.go_back),
-                style = MaterialTheme.typography.bodyLarge.scaled(),
-                color = Color.Black,
-                modifier = Modifier
-                    .padding(Dimens16)
-                    .clickable { onGoBack() }
             )
         }
 

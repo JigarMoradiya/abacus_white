@@ -44,8 +44,7 @@ fun ExerciseRoute(
 ) {
     val viewModel: ExerciseViewModel = hiltViewModel()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val purchasedSKU by homeActivityViewModel.purchasedSku.collectAsStateWithLifecycle()
-    val isPurchase = homeActivityViewModel.isPurchasedForModule(purchasedSKU)
+    val isPurchase = homeActivityViewModel.isPurchasedForModule()
     viewModel.setIsPurchased(isPurchase)
 
     LaunchedEffect(viewModel.abacusCalc.stateVersion) {

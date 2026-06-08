@@ -11,7 +11,6 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import com.google.gson.Gson
 import com.jigar.me.data.model.NotificationData
-import com.jigar.me.ui.view.base.inapp.BillingRepository
 import com.jigar.me.ui.view.home.HomeActivity
 import com.jigar.me.ui.view.home.navigation.RouteNavigation
 import com.jigar.me.utils.CommonUtils
@@ -52,9 +51,6 @@ class MyApplication : Application(), Configuration.Provider {
     }
 
     @Inject
-    lateinit var billingRepository: BillingRepository
-
-    @Inject
     lateinit var workerFactory: HiltWorkerFactory
 
     override val workManagerConfiguration: Configuration
@@ -69,17 +65,8 @@ class MyApplication : Application(), Configuration.Provider {
             return instance!!.applicationContext
         }
     }
-
-    override fun onTerminate() {
-        super.onTerminate()
-        billingRepository.endDataSourceConnections()
-    }
-
     override fun onCreate() {
         super.onCreate()
-        // Initialize billing once at app start
-        billingRepository.startDataSourceConnections()
-
         // app version update if any code logic change
         VersionUpdation.init(this)
 
@@ -153,9 +140,6 @@ class MyApplication : Application(), Configuration.Provider {
                             Constants.notificationTypeSetting -> {
                                 moveToDestination(RouteNavigation.Settings.route)
                             }
-                            Constants.notificationTypePurchase -> {
-                                moveToDestination(RouteNavigation.Purchase.route)
-                            }
                             Constants.notificationTypeYoutubeHome -> {
                                 getInstance().openYoutube()
                             }
@@ -164,9 +148,6 @@ class MyApplication : Application(), Configuration.Provider {
                             }
                             Constants.notificationTypeRate -> {
                                 getInstance().openURL("https://play.google.com/store/apps/details?id=${getInstance().packageName}")
-                            }
-                            Constants.notificationTypeShare -> {
-                                getInstance().shareIntent()
                             }
                             else -> {
                                 moveToDestination(RouteNavigation.Home.route)

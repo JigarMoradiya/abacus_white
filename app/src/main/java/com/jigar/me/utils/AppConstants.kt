@@ -1,8 +1,7 @@
 package com.jigar.me.utils
 
 object AppConstants {
-    internal const val DB_NAME = "kotlin_basic.db"
-    internal const val DB_NAME_NEW = "VedaaviAbacus.db"
+    internal const val DB_NAME_NEW = "eAbacus.db"
     internal const val PREF_NAME = "kotlin_basic_pref"
     internal const val YOUTUBE_URL = "https://www.youtube.com/channel/UC9MSzIbLkuzffqepgOqBLhw"
 

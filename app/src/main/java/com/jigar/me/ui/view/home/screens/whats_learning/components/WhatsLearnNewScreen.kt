@@ -20,10 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.media3.common.util.UnstableApi
 import com.jigar.me.R
 import com.jigar.me.data.local.data.DeviceInfo
-import com.jigar.me.ui.jetpack.utils.AudioPlayerManager
 import com.jigar.me.ui.view.home.common_ui.buttons.KidsIconButton
 import com.jigar.me.ui.view.home.screens.whats_learning.viewmodels.WhatsLearnNewUiState
-import com.jigar.me.ui.view.home.screens.purchase.components.InfoSection
 import com.jigar.me.ui.view.home.theme.AppDimens.KidIconMedium
 import com.jigar.me.ui.view.home.theme.ButtonType
 
@@ -47,12 +45,6 @@ fun WhatsLearnNewScreen(
             }
 
             Spacer(Modifier.padding(end = AppDimens.Dimens16))
-
-            // RIGHT SIDE
-            InfoSection(
-                modifier = Modifier.weight(1f),
-                infoList = uiState.videoList[uiState.currentPosition].pointsList,
-            )
 
         }
 

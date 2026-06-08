@@ -18,12 +18,10 @@ fun NumberSequencePuzzleHomeRoute(
     onPurchase: () -> Unit,
     onBackClick: () -> Unit,
 ) {
-    val purchasedSKU by homeActivityViewModel.purchasedSku.collectAsStateWithLifecycle()
-
     NumberSequencePuzzleHomeJetpackScreen(
         navController = navController,
         onPuzzleSelect = { type ->
-            if (homeActivityViewModel.isPurchasedForModule(purchasedSKU)) {
+            if (homeActivityViewModel.isPurchasedForModule()) {
                 onPuzzleSelect(type)
             } else {
                 onPurchase()

@@ -16,12 +16,10 @@ fun TargetNumberHomeRoute(
     onBackClick: () -> Unit,
 ) {
     val viewModel: TargetNumberViewModel = hiltViewModel()
-    val purchasedSKU by homeActivityViewModel.purchasedSku.collectAsStateWithLifecycle()
-
     TargetNumberHomeScreen(
         viewModel = viewModel,
         onStartGame = {
-            if (homeActivityViewModel.isPurchasedForModule(purchasedSKU)) {
+            if (homeActivityViewModel.isPurchasedForModule()) {
                 val state = viewModel.uiState.value
                 onStartPlay(state.selectedLevel, state.selectedDifficulty.name)
             } else {

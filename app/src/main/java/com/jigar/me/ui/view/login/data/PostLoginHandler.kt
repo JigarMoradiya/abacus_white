@@ -88,9 +88,5 @@ class PostLoginHandler @Inject constructor(
                 prefs.setCustomParam(Constants.PLAN_ASSIGN_FROM_ADMIN_DATA, Gson().toJson(list))
             }
         }
-        if (data?.has("free_trial_remaining_days") == true) {
-            val days = data.get("free_trial_remaining_days").asInt
-            prefs.setCustomParamInt(Constants.free_trial_remaining_days, days)
-        }
     }
 }

@@ -52,7 +52,6 @@ fun HomeScreen(
     onNavigateToExercise: () -> Unit,
     onNavigateToExamHome: () -> Unit,
     onNavigateToCCMHome: () -> Unit,
-    onNavigateToPurchase: () -> Unit,
     onNavigateToYoutubeVideo: () -> Unit,
     onNavigateToWhatsLearning: () -> Unit,
 ) {
@@ -86,7 +85,6 @@ fun HomeScreen(
             AppConstants.HomeClicks.Menu_Abacus_Exercise -> onNavigateToExercise()
             AppConstants.HomeClicks.Menu_Exam -> onNavigateToExamHome()
             AppConstants.HomeClicks.Menu_CCM -> onNavigateToCCMHome()
-            AppConstants.HomeClicks.Menu_Purchase_Store -> onNavigateToPurchase()
             AppConstants.HomeClicks.Menu_Video_Tutorial -> onNavigateToYoutubeVideo()
         }
     }
@@ -121,30 +119,6 @@ fun HomeScreen(
         Loader()
     }
 
-    AnimatedVisibility(
-        visible = uiState.isShowPurchasedConflictPopup,
-        enter = fadeIn(),
-        exit = fadeOut()
-    ) {
-        val title = if (uiState.purchasedConflictPopupType ==
-            AppConstants.APIStatus.ERROR_CODE_THIS_STUDENT_IS_ASSOCIATED_WITH_OTHER_ORDER
-        ) {
-            stringResource(R.string.your_login_is_associated_with_other_purchases)
-        } else {
-            stringResource(R.string.your_device_purchases_is_associated_with_other_login)
-        }
-        CustomPopupView(
-            title = title,
-            description = stringResource(R.string.want_to_move_purchase_with_this_login),
-            positiveButtonText = stringResource(R.string.yes_i_want_to_move),
-            negativeButtonText = stringResource(R.string.no_move_later),
-            notes = stringResource(R.string.no_move_later_msg),
-            widthMultiplier = 0.8f,
-            onPositiveTapped = { viewModel.changePurchase() },
-            onNegativeTapped = { viewModel.closeConflictPopup() }
-        )
-    }
-
     uiState.checkNotificationPermission?.consume {
         context.checkPermissions(Constants.NOTIFICATION_PERMISSION, requestMultiplePermissions)
     }
@@ -170,30 +144,5 @@ fun HomeScreen(
                 viewModel.showHideNotificationSettingPopup(false)
             }
         )
-    }
-
-    AnimatedVisibility(
-        visible = uiState.isShowFreeTrialPopup,
-        enter = fadeIn(),
-        exit = fadeOut()
-    ) {
-        uiState.freeTrialParam?.let { freeTrialParam ->
-            FreeTrialDialog(
-                remainingDays = freeTrialParam.remainingDays,
-                discountPer = freeTrialParam.discountPer,
-                discountPerLifetime = freeTrialParam.discountPerLifeTime,
-                manualFreeTrialDays = freeTrialParam.manualFreeTrialDays,
-                onYes = {
-                    viewModel.hideFreeTrialPopup()
-                    if (freeTrialParam.remainingDays >= 7) {
-                        onNavigateToWhatsLearning()
-                    } else {
-                        onNavigateToPurchase()
-                    }
-                },
-                onNo = { viewModel.hideFreeTrialPopup() },
-                onDismiss = { viewModel.hideFreeTrialPopup() }
-            )
-        }
     }
 }

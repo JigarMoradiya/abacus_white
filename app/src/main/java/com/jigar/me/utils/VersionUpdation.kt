@@ -25,13 +25,9 @@ object VersionUpdation {
     }
 
     private fun updateMigration(versionMigration: String,context: Context) {
-        if (versionMigration == "136_137"){
-            val oldDB = context.getDatabasePath(AppConstants.DB_NAME)
-            if (oldDB.exists()){
-                oldDB.delete()
-            }
-            prefManager.clearPref()
-        }
+//        if (versionMigration == "136_137"){
+//
+//        }
     }
 
 }
