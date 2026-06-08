@@ -73,7 +73,7 @@ android {
 
             dimension = "variant1"
             applicationId = "com.eabacus.brain.builder"
-            versionCode = 1
+            versionCode = 2
             versionName = "1.0.0"
         }
     }

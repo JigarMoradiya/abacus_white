@@ -34,24 +34,24 @@ import java.util.*
 
 
 // permission
-fun Context.checkPermissions(type: String,launcherPermission: ActivityResultLauncher<Array<String>>) : Boolean {
-        var permission = true
-        val listPermissionsNeeded = ArrayList<String>()
-        when (type) {
-            //these types are only for the AppSync Thing
-
-            Constants.NOTIFICATION_PERMISSION -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    val notificationPermission =  ContextCompat.checkSelfPermission(this,Manifest.permission.POST_NOTIFICATIONS)
-                    if (notificationPermission != PackageManager.PERMISSION_GRANTED) {
-                        listPermissionsNeeded.add(Manifest.permission.POST_NOTIFICATIONS)
-                    }
-                }
-            }
-        }
-        if (listPermissionsNeeded.isNotEmpty()) {
-            launcherPermission.launch(listPermissionsNeeded.toArray(Array(listPermissionsNeeded.size) { "it = $it" }))
-            permission = false
-        }
-        return permission
-    }
+//fun Context.checkPermissions(type: String,launcherPermission: ActivityResultLauncher<Array<String>>) : Boolean {
+//        var permission = true
+//        val listPermissionsNeeded = ArrayList<String>()
+//        when (type) {
+//            //these types are only for the AppSync Thing
+//
+//            Constants.NOTIFICATION_PERMISSION -> {
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+//                    val notificationPermission =  ContextCompat.checkSelfPermission(this,Manifest.permission.POST_NOTIFICATIONS)
+//                    if (notificationPermission != PackageManager.PERMISSION_GRANTED) {
+//                        listPermissionsNeeded.add(Manifest.permission.POST_NOTIFICATIONS)
+//                    }
+//                }
+//            }
+//        }
+//        if (listPermissionsNeeded.isNotEmpty()) {
+//            launcherPermission.launch(listPermissionsNeeded.toArray(Array(listPermissionsNeeded.size) { "it = $it" }))
+//            permission = false
+//        }
+//        return permission
+//    }

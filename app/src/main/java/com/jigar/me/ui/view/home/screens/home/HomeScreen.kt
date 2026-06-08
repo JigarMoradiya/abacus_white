@@ -39,8 +39,6 @@ import com.jigar.me.ui.view.home.theme.AppDimens
 import com.jigar.me.ui.view.home.theme.AppDimens.Dimens50
 import com.jigar.me.ui.view.home.theme.AppDimens.Dimens80
 import com.jigar.me.utils.AppConstants
-import com.jigar.me.utils.Constants
-import com.jigar.me.utils.checkPermissions
 import com.jigar.me.utils.extensions.openURL
 
 @Composable
@@ -121,9 +119,9 @@ fun HomeScreen(
         Loader()
     }
 
-    uiState.checkNotificationPermission?.consume {
-        context.checkPermissions(Constants.NOTIFICATION_PERMISSION, requestMultiplePermissions)
-    }
+//    uiState.checkNotificationPermission?.consume {
+//        context.checkPermissions(Constants.NOTIFICATION_PERMISSION, requestMultiplePermissions)
+//    }
 
     AnimatedVisibility(
         visible = uiState.isShowNotificationSettingPopup,

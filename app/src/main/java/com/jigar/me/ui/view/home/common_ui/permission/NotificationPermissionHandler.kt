@@ -28,21 +28,20 @@ fun NotificationPermissionHandler(
         onResult(granted)
     }
 
-    LaunchedEffect(Unit) {
-        val isRuntimePermissionRequired = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
-        val isAlreadyGranted = if (isRuntimePermissionRequired) {
-            ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
-        } else {
-            true
-        }
-        viewModel.onCheckInitial(isRuntimePermissionRequired, isAlreadyGranted)
-    }
-
-    LaunchedEffect(uiState) {
-        if (uiState is NotificationPermissionUiState.Requesting &&
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
-        ) {
-            launcher.launch(Manifest.permission.POST_NOTIFICATIONS)
-        }
-    }
+//    LaunchedEffect(Unit) {
+//        val isRuntimePermissionRequired = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+//        val isAlreadyGranted = if (isRuntimePermissionRequired) {
+//            ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
+//        } else {
+//            true
+//        }
+//        viewModel.onCheckInitial(isRuntimePermissionRequired, isAlreadyGranted)
+//    }
+//    LaunchedEffect(uiState) {
+//        if (uiState is NotificationPermissionUiState.Requesting &&
+//            Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+//        ) {
+//            launcher.launch(Manifest.permission.POST_NOTIFICATIONS)
+//        }
+//    }
 }
