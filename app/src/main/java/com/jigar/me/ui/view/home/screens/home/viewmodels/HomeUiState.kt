@@ -16,6 +16,7 @@ data class HomeUiState(
 
     val isShowPurchasedConflictPopup: Boolean = false,
     val purchasedConflictPopupType: String? = null,
+    val youtube_url: String? = null,
 
     val isShowFreeTrialPopup: Boolean = false,
     val freeTrialParam: FreeTrialParam? = null,

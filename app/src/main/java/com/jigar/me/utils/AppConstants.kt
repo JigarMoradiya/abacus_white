@@ -65,6 +65,8 @@ object AppConstants {
             var newVersionNotes = "newVersionNotes"
             var bulkLogin = "bulkLogin"
             var privacyPolicyUrl = "privacyPolicyUrl"
+            var contact_us_url = "contact_us"
+            var youtube_url = "youtube_url"
             var versionCode = "versionCode"
             var discountPer = "discount_per"
             var discountPerLifeTime = "discount_per_lifetime"

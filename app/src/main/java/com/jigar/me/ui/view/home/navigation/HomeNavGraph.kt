@@ -94,10 +94,7 @@ fun HomeNavGraph(
                 },
                 onNavigateToYoutubeVideo = {
                     navController.navigate(RouteNavigation.YoutubeVideo.route)
-                },
-                onNavigateToWhatsLearning = {
-                    navController.navigate(RouteNavigation.WhatsLearning.route)
-                },
+                }
             )
         }
 

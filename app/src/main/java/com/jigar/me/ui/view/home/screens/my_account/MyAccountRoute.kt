@@ -54,7 +54,7 @@ fun MyAccountRoute(
                     context.openURL("https://play.google.com/store/apps/details?id=${context.packageName}")
                 }
                 "need_help" -> {
-                    ContactUsActivity.getInstance(context, AppConstants.extras_Comman.typeNeedHelp)
+                    uiState.contactUsUrl?.let { context.openURL(it) }
                 }
                 "privacy_policy" -> {
                     uiState.privacyPolicyUrl?.let { context.openURL(it) }

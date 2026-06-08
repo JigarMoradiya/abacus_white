@@ -48,14 +48,6 @@ fun HomeHeaderRight(
             size = KidIconMedium
         )
         KidsIconButton(
-            icon = Icons.Default.Store,
-            onClick = {
-                onMenuClick(AppConstants.HomeClicks.Menu_Purchase_Store)
-            },
-            type = ButtonType.BLUE,
-            size = KidIconMedium
-        )
-        KidsIconButton(
             icon = Icons.Default.OndemandVideo,
             onClick = {
                 onMenuClick(AppConstants.HomeClicks.Menu_Video_Tutorial)

@@ -85,7 +85,7 @@ android {
         }
     }
 
-    assetPacks += listOf(":asset_install_time")
+//    assetPacks += listOf(":asset_install_time")
 
     packaging {
         resources {

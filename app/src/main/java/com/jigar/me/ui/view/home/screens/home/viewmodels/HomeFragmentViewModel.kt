@@ -25,7 +25,9 @@ class HomeFragmentViewModel @Inject constructor(
     init {
         viewModelScope.launch{
             loadHomeMenu()
-            updateState_ { copy(checkNotificationPermission = ConsumableCommand(Unit)) }
+            updateState_ {
+                copy(checkNotificationPermission = ConsumableCommand(Unit),youtube_url = prefs.getCustomParam(AppConstants.RemoteConfig.youtube_url,""))
+            }
         }
     }
     fun closeConflictPopup() {

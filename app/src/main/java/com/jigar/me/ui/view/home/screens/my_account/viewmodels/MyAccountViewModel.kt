@@ -29,11 +29,14 @@ class MyAccountViewModel @Inject constructor(
         if (!statisticsData.isEmpty()){
             val statistics = Gson().fromJson(statisticsData, Statistics::class.java)
             updateState_ {
-                copy(statistics = statistics,privacyPolicyUrl = pref.getCustomParam(AppConstants.RemoteConfig.privacyPolicyUrl,""))
+                copy(statistics = statistics,
+                    privacyPolicyUrl = pref.getCustomParam(AppConstants.RemoteConfig.privacyPolicyUrl,""),
+                    contactUsUrl = pref.getCustomParam(AppConstants.RemoteConfig.contact_us_url,""))
             }
         }else{
             updateState_ {
-                copy(privacyPolicyUrl = pref.getCustomParam(AppConstants.RemoteConfig.privacyPolicyUrl,""))
+                copy(privacyPolicyUrl = pref.getCustomParam(AppConstants.RemoteConfig.privacyPolicyUrl,""),
+                    contactUsUrl = pref.getCustomParam(AppConstants.RemoteConfig.contact_us_url,""))
             }
         }
         getStatistics()

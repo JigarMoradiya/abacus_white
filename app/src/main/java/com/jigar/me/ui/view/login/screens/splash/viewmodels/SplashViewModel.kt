@@ -74,6 +74,8 @@ class SplashViewModel @Inject constructor(
         val displayPlan = remoteConfig.getString(AppConstants.RemoteConfig.displayPlanList)
         val displayMenu = remoteConfig.getString(AppConstants.RemoteConfig.displayMenuList)
         val privacyPolicyUrl = remoteConfig.getString(AppConstants.RemoteConfig.privacyPolicyUrl)
+        val contact_us_url = remoteConfig.getString(AppConstants.RemoteConfig.contact_us_url)
+        val youtube_url = remoteConfig.getString(AppConstants.RemoteConfig.youtube_url)
         val supportEmail = remoteConfig.getString(AppConstants.RemoteConfig.supportEmail)
         val newVersionNotes = remoteConfig.getString(AppConstants.RemoteConfig.newVersionNotes)
         val bulkLogin = remoteConfig.getString(AppConstants.RemoteConfig.bulkLogin)
@@ -83,6 +85,8 @@ class SplashViewModel @Inject constructor(
 
         with(prefs) {
             setCustomParam(AppConstants.RemoteConfig.privacyPolicyUrl, privacyPolicyUrl)
+            setCustomParam(AppConstants.RemoteConfig.contact_us_url, contact_us_url)
+            setCustomParam(AppConstants.RemoteConfig.youtube_url, youtube_url)
             setCustomParam(AppConstants.RemoteConfig.supportEmail, supportEmail)
             setCustomParam(AppConstants.RemoteConfig.newVersionNotes, newVersionNotes)
             setCustomParam(AppConstants.RemoteConfig.bulkLogin, bulkLogin)

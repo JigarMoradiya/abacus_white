@@ -41,6 +41,7 @@ import com.jigar.me.ui.view.home.theme.AppDimens.Dimens80
 import com.jigar.me.utils.AppConstants
 import com.jigar.me.utils.Constants
 import com.jigar.me.utils.checkPermissions
+import com.jigar.me.utils.extensions.openURL
 
 @Composable
 fun HomeScreen(
@@ -52,8 +53,7 @@ fun HomeScreen(
     onNavigateToExercise: () -> Unit,
     onNavigateToExamHome: () -> Unit,
     onNavigateToCCMHome: () -> Unit,
-    onNavigateToYoutubeVideo: () -> Unit,
-    onNavigateToWhatsLearning: () -> Unit,
+    onNavigateToYoutubeVideo: () -> Unit
 ) {
     val viewModel: HomeFragmentViewModel = hiltViewModel()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -85,7 +85,9 @@ fun HomeScreen(
             AppConstants.HomeClicks.Menu_Abacus_Exercise -> onNavigateToExercise()
             AppConstants.HomeClicks.Menu_Exam -> onNavigateToExamHome()
             AppConstants.HomeClicks.Menu_CCM -> onNavigateToCCMHome()
-            AppConstants.HomeClicks.Menu_Video_Tutorial -> onNavigateToYoutubeVideo()
+            AppConstants.HomeClicks.Menu_Video_Tutorial -> {
+                uiState.youtube_url?.let { context.openURL(it) }
+            }
         }
     }
 
